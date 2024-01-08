@@ -1,0 +1,36 @@
+{
+    "name": "starter-sass",
+    "version": "0.2.0",
+    "description": "StarterSASS",
+    "main": "dist/index.html",
+    "author": "Erpriex",
+    "scripts": {
+        "copy:assets": "copyfiles -u 1 ./src/assets/**/* dist",
+        "copy:js": "copyfiles -u 1 ./src/js/**/* dist",
+        "copy:html": "copyfiles -u 1 ./src/*.html dist",
+        "copy:ico": "copyfiles -u 1 ./src/*.ico dist",
+        "copy": "npm-run-all --parallel copy:*",
+        "watch:assets": "onchange \"src/assets/**/*\" -- npm run copy:assets",
+        "watch:html": "onchange \"src/*.html\" -- npm run copy:html",
+        "watch:ico": "onchange \"src/*.ico\" -- npm run copy:ico",
+        "watch:js": "onchange \"src/js/*.js\" -- npm run copy:js",
+        "watch:sass": "sass --no-source-map --watch src/sass:dist/css",
+        "watch": "npm-run-all --parallel watch:*",
+        "serve": "browser-sync start --server dist --files dist",
+        "build": "npm-run-all copy --parallel watch serve",
+       
+        "watchprod:sass": "sass --no-source-map src/sass:dist/css",
+        "watchprod": "npm-run-all --parallel watchprod:*",
+        "buildprod": "npm-run-all copy --parallel watchprod"
+    },
+    "dependencies": {
+        "browser-sync": "^2.27.12",
+        "copyfiles": "^2.4.1",
+        "engine.io": "^6.4.1",
+        "npm-run-all": "^4.1.5",
+        "onchange": "^7.1.0",
+        "qs": "^6.11.0",
+        "sass": "^1.49.8",
+        "swiper": "^9.1.1"
+    }
+}
